@@ -139,12 +139,31 @@ def get_rsi():
     return resp
 
 
+def round_price(price, ndigits=2):
+    return round(price, ndigits)
 
 
+@app.route('/getPriceHistory')
+def get_price_history():
+    ticker_name = request.args.get('ticker_name')
+    start_date = request.args.get('start_date')
 
+    start_date = datetime.datetime.strptime(start_date, '%Y-%m-%d')
+    end_date = start_date + datetime.timedelta(days=100)
 
+    df = yf.download(ticker_name, start=start_date, end=end_date, progress=False)
 
+    data = {'date': [date.strftime('%Y-%m-%d') for date in df.index],
+            'close': df['Close'].apply(round_price).tolist(),
+            'high': df['High'].apply(round_price).tolist(),
+            # 'low': df['Low'].tolist()
+            }
+
+    resp = jsonify(data)
+    return resp
 
 
 if __name__=='__main__':
-    app.run(host='0.0.0.0', debug=True, port=9999)
+    app.run(host='0.0.0.0', debug=True, port=5000)
+
+get_rsi()
