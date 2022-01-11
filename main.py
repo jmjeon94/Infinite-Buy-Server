@@ -59,35 +59,10 @@ def get_price():
 
 @app.route('/getRSI')
 def get_rsi():
-    now = datetime.datetime.now()
-    today = datetime.datetime.today().strftime('%Y-%m-%d')
-    today_datetime = datetime.datetime.strptime(today, '%Y-%m-%d')
-    file_name = 'RSI-data.csv'
 
-    if not os.path.exists(file_name):  # 파일명이 없을 때
-        df = pd.DataFrame(columns=TICKERS)
-        df.to_csv(file_name, index=False)
+    file_name = 'RSI_data.csv'
 
-    df = pd.read_csv(file_name)  # 파일 읽기
-
-    if len(df) == 0:
-        save_time = today_datetime - datetime.timedelta(days=1)
-
-    else:
-        save_time = datetime.datetime.strptime(df.iloc[-1]['Day'], '%Y-%m-%d')
-
-    if (now - today_datetime).seconds > 36000 and (today_datetime - save_time).days == 1:  # am 10시 이후 인 경우 , 데이터 저장
-
-        rsis = {}
-        for ticker in TICKERS:
-            rsi = get_cur_rsi(ticker)
-            rsis[ticker] = rsi
-
-        rsis['Day'] = today
-        df = df.append([rsis])
-
-        df.to_csv('RSI-data.csv', index=False)
-
+    df = pd.read_csv(file_name)
     row = df.iloc[-1]
     data = row2dict(row, 'cur_rsi')
     resp = jsonify(data)
@@ -116,5 +91,5 @@ def get_price_history():
 
 
 if __name__=='__main__':
-    app.run(host='0.0.0.0', debug=True, port=5000)
+    app.run(host='0.0.0.0', debug=True, port=9999)
 
