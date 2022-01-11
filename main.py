@@ -13,45 +13,12 @@ def root():
     return 'hello world'
 
 @app.route('/getClosePrice')
-def get_price():
-    parameder_dict = request.args.to_dict()
+def get_close_price():
+    file_name = 'close_price.csv'
 
-    file_name = f'close_price.csv'
-    now = datetime.datetime.now()
-    today = datetime.datetime.today().strftime('%Y-%m-%d')
-    today_datetime = datetime.datetime.strptime(today, '%Y-%m-%d')
-
-    if not os.path.exists(file_name):  # 파일이 없다면 파일 저장
-        df = pd.DataFrame(columns=TICKERS)
-        df.to_csv(file_name)
-
-    df = pd.read_csv(file_name)  # 파일 읽기
-    if len(df) == 0:
-        save_time = today_datetime - datetime.timedelta(days=1)
-
-    else:
-        save_time = datetime.datetime.strptime(df.iloc[-1]['Day'], '%Y-%m-%d')
-
-    if (now - today_datetime).seconds > 14700 and (today_datetime - save_time).days == 1:  # am 5시 이후 인 경우, 데이터 저장
-        prices = {}
-        for ticker in TICKERS:
-            close_price = int(yf.download(ticker, start=today).iloc[-1]['Close'] * 100) / 100
-            prices[ticker] = close_price
-        prices['Day'] = today
-        df = df.append(prices, ignore_index=True)
-        df.to_csv(file_name)  # 파일 저장
-
+    df = pd.read_csv(file_name)
     row = df.iloc[-1]
-
-    if len(parameder_dict) == 0:
-        data = row2dict(row, 'close_price')
-
-    else:
-        ticker = list(parameder_dict.values())[0]
-        close_price = row[ticker]
-        data = []
-        data.append({'ticker':ticker, 'close_price':close_price})
-
+    data = row2dict(row, 'close_price')
     resp = jsonify(data)
 
     return resp
