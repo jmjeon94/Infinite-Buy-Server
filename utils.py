@@ -65,3 +65,6 @@ def round_price(price, ndigits=2):
 if __name__=='__main__':
     print_resp('FNGU')
 
+    for ticker in TICKERS:
+        print(get_cur_rsi(ticker))
+
