@@ -14,7 +14,7 @@ def get_cur_rsi(ticker):
         rows = soup.find_all('a',class_="screener-link")
         rsi = float(rows[-6].text)
         print(f'{ticker} rsi 성공!')
-        time.sleep(10)
+        time.sleep(1)
 
     except:
         print(f'{ticker} rsi 실패!')
@@ -22,16 +22,16 @@ def get_cur_rsi(ticker):
 
     return rsi
 
-def print_resp(ticker):
-    url = f'https://finviz.com/screener.ashx?v=171&ft=3&t={ticker}&o=rsi'
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.1 Safari/605.1.15'}
-    html = requests.get(url=url, headers=headers)
-    soup = bs(html.text, 'html.parser')
-    #print(soup)
-    rows = soup.find_all('a',class_="screener-link")
-    print(rows)
-    print(float(rows[-6].text))
+# def print_resp(ticker):
+#     url = f'https://finviz.com/screener.ashx?v=171&ft=3&t={ticker}&o=rsi'
+#     headers = {
+#         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.1 Safari/605.1.15'}
+#     html = requests.get(url=url, headers=headers)
+#     soup = bs(html.text, 'html.parser')
+#     #print(soup)
+#     rows = soup.find_all('a',class_="screener-link")
+#     print(rows)
+#     print(float(rows[-6].text))
 
 
 
@@ -60,13 +60,4 @@ def row2dict(row, get):
 
 def round_price(price, ndigits=2):
     return round(price, ndigits)
-
-
-
-
-if __name__=='__main__':
-
-    for ticker in TICKERS:
-        print(get_cur_rsi(ticker))
-        #print_resp(ticker)
 
