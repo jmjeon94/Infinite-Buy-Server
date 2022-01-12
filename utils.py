@@ -16,7 +16,7 @@ def get_cur_rsi(ticker):
 
     except:
         print(f'{ticker} rsi 실패!')
-        return -1
+        return 100
 
     return rsi
 
@@ -27,6 +27,7 @@ def print_resp(ticker):
     html = requests.get(url=url, headers=headers)
     soup = bs(html.text, 'html.parser')
     print(soup)
+    print(soup.find_all('a',class_="screener-link"))
 
 
 
