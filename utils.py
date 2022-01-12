@@ -58,4 +58,4 @@ def round_price(price, ndigits=2):
 
 
 if __name__=='__main__':
-    print_resp('TQQQ')
+    print_resp('FNGU')
