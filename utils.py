@@ -13,6 +13,15 @@ def get_cur_rsi(ticker):
     rsi = float(rows[-6].text)
     return rsi
 
+def print_resp(ticker):
+    url = f'https://finviz.com/screener.ashx?v=171&ft=3&t={ticker}&o=rsi'
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.1 Safari/605.1.15'}
+    html = requests.get(url=url, headers=headers)
+    soup = bs(html.text, 'html.parser')
+    print(soup)
+
+
 
 def get_cur_price(ticker):
     url = 'https://finance.yahoo.com/quote/' + ticker
@@ -40,3 +49,6 @@ def row2dict(row, get):
 def round_price(price, ndigits=2):
     return round(price, ndigits)
 
+
+if __name__=='__main__':
+    print_resp('TQQQ')
