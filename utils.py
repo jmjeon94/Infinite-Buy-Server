@@ -26,7 +26,7 @@ def print_resp(ticker):
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.1 Safari/605.1.15'}
     html = requests.get(url=url, headers=headers)
     soup = bs(html.text, 'html.parser')
-    print(soup)
+    #print(soup)
     rows = soup.find_all('a',class_="screener-link")
     print(rows)
     print(float(rows[-6].text))
@@ -67,4 +67,5 @@ if __name__=='__main__':
 
     for ticker in TICKERS:
         print(get_cur_rsi(ticker))
+        print_resp(ticker)
 
