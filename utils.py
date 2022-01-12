@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup as bs
 import requests
+import time
 
 TICKERS = ['SOXL','BULZ','TQQQ','TECL','WEBL','UPRO','FNGU','HIBL','WANT',
            'TNA','NAIL','RETL','UDOW','LABU','PILL','CURE','MIDU','FAS','TPOR','DFEN','DUSL','DRN','DPST','BNKU','UTSL']
@@ -13,6 +14,7 @@ def get_cur_rsi(ticker):
         rows = soup.find_all('a',class_="screener-link")
         rsi = float(rows[-6].text)
         print(f'{ticker} rsi 성공!')
+        time.sleep(10)
 
     except:
         print(f'{ticker} rsi 실패!')
@@ -63,9 +65,8 @@ def round_price(price, ndigits=2):
 
 
 if __name__=='__main__':
-    print_resp('FNGU')
 
     for ticker in TICKERS:
         print(get_cur_rsi(ticker))
-        print_resp(ticker)
+        #print_resp(ticker)
 
