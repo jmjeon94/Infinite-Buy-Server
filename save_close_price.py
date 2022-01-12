@@ -12,7 +12,7 @@ def save_close_price():
 
     df = df.append([prices], ignore_index=True)
     df.to_csv(file_name, index=False)  # csv 파일에 저장
-    print("저장되었습니다.")
+    print("close_price가 저장되었습니다.")
 
 
 if __name__=='__main__':
