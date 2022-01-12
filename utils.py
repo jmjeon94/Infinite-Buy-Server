@@ -27,7 +27,9 @@ def print_resp(ticker):
     html = requests.get(url=url, headers=headers)
     soup = bs(html.text, 'html.parser')
     print(soup)
-    print(soup.find_all('a',class_="screener-link"))
+    rows = soup.find_all('a',class_="screener-link")
+    print(rows)
+    print(float(rows[-6].text))
 
 
 
@@ -58,5 +60,8 @@ def round_price(price, ndigits=2):
     return round(price, ndigits)
 
 
+
+
 if __name__=='__main__':
     print_resp('FNGU')
+
