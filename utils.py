@@ -13,7 +13,6 @@ def get_cur_rsi(ticker):
         soup = bs(html.text, 'html.parser')
         rows = soup.find_all('a',class_="screener-link")
         rsi = float(rows[-6].text)
-        print(f'{ticker} rsi 성공!')
         time.sleep(1)
 
     except:

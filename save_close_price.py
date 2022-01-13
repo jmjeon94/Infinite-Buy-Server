@@ -1,6 +1,7 @@
 from utils import *
 import pandas as pd
 import yfinance as yf
+from datetime import datetime
 
 def save_close_price():
     file_name = 'close_price.csv'
@@ -12,7 +13,7 @@ def save_close_price():
 
     df = df.append([prices], ignore_index=True)
     df.to_csv(file_name, index=False)  # csv 파일에 저장
-    print("close_price가 저장되었습니다.")
+    print(f"close_price가 저장되었습니다. {datetime.now()}")
 
 
 if __name__=='__main__':

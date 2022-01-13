@@ -1,5 +1,6 @@
 from utils import *
 import pandas as pd
+from datetime import datetime
 
 def save_rsi():
     file_name = 'RSI_data.csv'
@@ -11,7 +12,7 @@ def save_rsi():
 
     df = df.append([rsis], ignore_index=True)
     df.to_csv(file_name, index=False)  # csv 파일에 저장
-    print("rsi 값이 저장되었습니다.")
+    print(f"rsi 값이 저장되었습니다. {datetime.now()}")
 
 if __name__=='__main__':
     save_rsi()
