@@ -1,5 +1,4 @@
 #!/bin/bash
-
-echo "hello"
-python3 ~/Infinite-Buy-Server/save_rsi.py
+cd ~/Infinite-Buy-Server
+python3 save_rsi.py
 

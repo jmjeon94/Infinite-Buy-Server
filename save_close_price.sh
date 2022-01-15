@@ -1,3 +1,4 @@
 #!/bin/bash
 
-python3 ~/Infinite-Buy-Server/save_close_price.py
+cd ~/Infinite-Buy-Server
+python3 save_close_price.py
