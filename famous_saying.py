@@ -39,13 +39,14 @@ sayings = ['잠자는 동안에도 돈이 들어오는 방법을 찾지 못한�
 '시장의 타이밍을 맞추려고 애쓰는 것은 스스로를 불안과 초조의 깊은 늪으로 빠트리는 지름길이다.']
 
 def save_famous_saying():
-
     df = pd.DataFrame()
     resp_saying = sayings[randint(0,26)]
     df = df.append([resp_saying])
     df.to_csv("famous_saying.csv", index=False)
 
     print(f"명언집 수정 완료. {datetime.datetime.now()}")
-    return resp_saying
 
 
+
+if __name__=='__main__':
+    save_famous_saying()
