@@ -1,5 +1,6 @@
 from random import randint
 import pandas as pd
+import datetime
 
 # 총 27개 임
 sayings = ['잠자는 동안에도 돈이 들어오는 방법을 찾지 못한다면 당신은 죽을 때까지 일을 해야만 할 것이다.',
@@ -41,3 +42,4 @@ df = pd.DataFrame()
 resp_saying = sayings[randint(0,26)]
 df = df.append([resp_saying])
 df.to_csv("famous_saying.csv", index=False)
+print(f"명언집 수정 완료. {datetime.datetime.now()}")
