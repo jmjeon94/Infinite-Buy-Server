@@ -56,7 +56,17 @@ def get_price_history():
     resp = jsonify(data)
     return resp
 
+@app.route('/getFamousSaying')
+def get_famous_saying():
+    file_name = 'famous_saying.csv'
+    df = pd.read_csv(file_name)
+    row = df.iloc[0][0]
+    return row
+
+
+
+
 
 if __name__=='__main__':
-    app.run(host='0.0.0.0', debug=True, port=9999)
+    app.run(host='0.0.0.0', debug=True, port=9997)
 
