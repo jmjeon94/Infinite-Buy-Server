@@ -3,7 +3,7 @@ import pandas as pd
 from datetime import datetime
 
 def save_rsi():
-    file_name = 'RSI_data.csv'
+    file_name = './dataset/RSI_data.csv'
     df = pd.DataFrame(columns=TICKERS)
     rsis = {}
     for ticker in TICKERS:

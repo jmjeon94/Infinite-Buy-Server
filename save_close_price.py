@@ -5,7 +5,7 @@ from datetime import datetime
 import time
 
 def save_close_price():
-    file_name = 'close_price.csv'
+    file_name = './dataset/close_price.csv'
     df = pd.DataFrame(columns=TICKERS)
     prices = {}
     for ticker in TICKERS:

@@ -5,10 +5,10 @@ RATIO_RISE = [1, 1.001, 1.005, 1.01, 1.015, 1.02, 1.025, 1.03, 1.035, 1.04, 1.04
 
 
 def get_expect_value(n, post_expect_value):
-    df_1 = pd.read_csv("VR_account.csv")
+    df_1 = pd.read_csv("./dataset/VR_account.csv")
     pool = df_1.iloc[0]['pool']
 
-    df_2 = pd.read_csv('close_price.csv')
+    df_2 = pd.read_csv('./dataset/close_price.csv')
     close_price = df_2.iloc[0]["TQQQ"]
 
     real_value = close_price * n
@@ -33,23 +33,23 @@ def get_expect_value(n, post_expect_value):
 
 
 def update_pool():
-    df = pd.read_csv("VR_account.csv")
+    df = pd.read_csv("dataset/VR_account.csv")
     df2 = df.copy()
     pool = df2['pool']
     pool += 250
     df2['pool'] = pool
-    df2.to_csv("VR_account.csv", index=False)
+    df2.to_csv("./dataset/VR_account.csv", index=False)
     return df2.iloc[0]['pool']
 
 
 def update_value(new_value):
-    df = pd.read_csv("VR_account.csv")
+    df = pd.read_csv("dataset/VR_account.csv")
     df['expect_value'] = new_value
-    df.to_csv("VR_account.csv", index=False)
+    df.to_csv("./dataset/VR_account.csv", index=False)
 
 
 def make_order():
-    file_name = "VR_account.csv"
+    file_name = "dataset/VR_account.csv"
     df = pd.read_csv(file_name)
     n = df.iloc[0]['n']
     post_expect_value = df.iloc[0]['expect_value']
@@ -96,14 +96,14 @@ def make_order():
     df_buy = df_buy.append(buy_list, ignore_index=True)
     df_sell = df_sell.append(sell_list, ignore_index=True)
 
-    df_buy.to_csv("VR_buy_list.csv", index=False)
-    df_sell.to_csv("VR_sell_list.csv", index=False)
+    df_buy.to_csv("./dataset/VR_buy_list.csv", index=False)
+    df_sell.to_csv("./dataset/VR_sell_list.csv", index=False)
 
 
 def reset_account():
     df = pd.DataFrame()
     df = df.append([{'n': 150, 'pool': 1232.88, 'expect_value': 12238.96}], ignore_index=True)
-    df.to_csv("VR_account.csv", index=False)
+    df.to_csv("./dataset/VR_account.csv", index=False)
 
 
 if __name__ == '__main__':

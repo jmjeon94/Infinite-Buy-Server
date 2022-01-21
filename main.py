@@ -14,7 +14,7 @@ def root():
 
 @app.route('/getClosePrice')
 def get_close_price():
-    file_name = 'close_price.csv'
+    file_name = 'dataset/close_price.csv'
 
     df = pd.read_csv(file_name)
     row = df.iloc[-1]
@@ -27,7 +27,7 @@ def get_close_price():
 @app.route('/getRSI')
 def get_rsi():
 
-    file_name = 'RSI_data.csv'
+    file_name = 'dataset/RSI_data.csv'
 
     df = pd.read_csv(file_name)
     row = df.iloc[-1]
@@ -58,7 +58,7 @@ def get_price_history():
 
 @app.route('/getFamousSaying')
 def get_famous_saying():
-    file_name = 'famous_saying.csv'
+    file_name = 'dataset/famous_saying.csv'
     df = pd.read_csv(file_name)
     row = df.iloc[0][0]
     return row

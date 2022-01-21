@@ -42,7 +42,7 @@ def save_famous_saying():
     df = pd.DataFrame()
     resp_saying = sayings[randint(0,26)]
     df = df.append([resp_saying])
-    df.to_csv("famous_saying.csv", index=False)
+    df.to_csv("./dataset/famous_saying.csv", index=False)
 
     print(f"명언집 수정 완료. {datetime.datetime.now()}")
 
